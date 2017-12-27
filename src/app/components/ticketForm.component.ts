@@ -19,6 +19,7 @@ export class TicketFormComponent {
 
     ticket = {};
     private id: string;
+
     ngOnInit() {
          this.route.paramMap
             .subscribe(params => {
@@ -41,8 +42,9 @@ export class TicketFormComponent {
             this.router.navigate(['tickets']);
         });
     }
+
+    //Set date format for datepicker
     public myDatePickerOptions: IMyDpOptions = {
-        // other options...
         dateFormat: 'dd/mm/yyyy',
     };
    

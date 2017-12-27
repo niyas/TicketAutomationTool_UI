@@ -28,6 +28,7 @@ export class TicketListComponent {
         }
         console.log(selectedTickets);
     }
+    
     loadTicket() {
         this.ticketService.getTickets().subscribe(data => this.tickets = data);
     }
