@@ -44,7 +44,8 @@
     <tbody>
         <tr *ngFor="let ticket of tickets" [className] ="ticket.Priority? 'success': ''">
             <td>
-                <input type="checkbox" name="isFinalize" [(ngModel)]="ticket.isSelected" class="form-check-input" />
+                <input type="checkbox"  name="isFinalize" [(ngModel)]="ticket.isSelected" 
+                    (ngModelChange)="finalizeSelected()" *ngIf="!ticket.Finalized" class="form-check-input" />
             </td>
             <td>
                 {{ticket.IncidentId}}
@@ -77,6 +78,6 @@
         </tr>
     </tbody>
 </table>
-<div id="divFinalize" class="float-right">
+<div class="float-right" *ngIf="isFinalized">
     <a class="btn btn-default" (click)="finalize()">Finalize</a> selected, tickets will not be editable after finalize
 </div>

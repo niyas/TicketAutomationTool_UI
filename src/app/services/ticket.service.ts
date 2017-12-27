@@ -38,11 +38,25 @@ export class TicketService {
      * 
      * @param {String} id 
      * @param {Object} payload 
+     * @returns {Promise}
      */
     updateTicket(id, payload) {
         return this.http.patch(
             this.apiHost + '/api/tickets/' + id,
             payload
         ).map((res: Response) => res.json());
+    }
+
+     /**
+     * Update finalize status for list of tickets
+     * 
+     * @param {Array} payload 
+     * @returns {Promise}
+     */
+    finalizeTickets(payload) {
+        return this.http.patch(
+            this.apiHost + '/api/tickets/finalize/',
+            payload
+        ).map((res: Response) => res.json());   
     }
 }

@@ -16,7 +16,8 @@ export class TicketListComponent {
     }
 
     tickets: any = [''];
-
+    isFinalized: boolean = false;
+    status: string;
     ngOnInit() {
         this.loadTicket();
     }
@@ -26,9 +27,19 @@ export class TicketListComponent {
         for (var i in selectedTickets) {
             selectedTickets[i].Finalized = true;
         }
-        console.log(selectedTickets);
+        this.ticketService.finalizeTickets(selectedTickets).subscribe(data => this.status = data.success)
     }
-    
+
+    finalizeSelected() {
+        let selectedTickets: any = _.filter(this.tickets, ["isSelected", true]);
+        if(selectedTickets.length > 0) {
+            this.isFinalized = true;
+        }
+        else {
+            this.isFinalized = false;
+        }
+    }
+
     loadTicket() {
         this.ticketService.getTickets().subscribe(data => this.tickets = data);
     }
