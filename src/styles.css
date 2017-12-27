@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+.float-right {
+    color: white;
+    border-width: 3px;
+    background-color: #272727;
+    border-style: solid;
+    position: fixed;
+    padding: 7px;
+    bottom: 0;
+    right: 0;
+    max-width: 450px;
+    z-index: 999;
+}

@@ -1,0 +1,82 @@
+﻿<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                IncidentId
+            </th>
+            <th>
+                NotificationText
+            </th>
+            <th>
+                SeverityNumber
+            </th>
+            <th>
+                SuspendReason
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                StatusTracking
+            </th>
+            <th>
+                ETR
+            </th>
+            <th>
+                Proprity
+            </th>
+
+            <!--<th>
+                userId
+            </th>
+            <th>
+                title
+            </th>
+            <th>
+                Body
+            </th>-->
+            <td>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ticket of tickets" [className] ="ticket.Priority? 'success': ''">
+            <td>
+                <input type="checkbox" name="isFinalize" [(ngModel)]="ticket.isSelected" class="form-check-input" />
+            </td>
+            <td>
+                {{ticket.IncidentId}}
+            </td>
+            <td>
+                {{ticket.NotificationText}}
+            </td>
+            <td>
+                {{ticket.SeverityNumber}}
+            </td>
+            <td>
+                {{ticket.SuspendReason}}
+            </td>
+            <td>
+                {{ticket.Status}}
+            </td>
+            <td>
+                {{ticket.StatusTracking}}
+            </td>
+            <td>
+                {{ticket.ETR}}
+            </td>
+            <td>
+                {{ticket.Priority}}
+            </td>
+            <td>
+                <a [routerLink]="['/update', ticket.PayrollDataId]"  class="btn btn-primary"  *ngIf="!ticket.Finalized">update</a>
+               <!-- <button type="button" class="btn btn-primary">Update</button>-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div id="divFinalize" class="float-right">
+    <a class="btn btn-default" (click)="finalize()">Finalize</a> selected, tickets will not be editable after finalize
+</div>
