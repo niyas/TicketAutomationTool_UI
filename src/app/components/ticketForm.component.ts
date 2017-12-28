@@ -19,11 +19,13 @@ export class TicketFormComponent {
 
     ticket = {};
     private id: string;
+    assignee: string;
 
     ngOnInit() {
          this.route.paramMap
             .subscribe(params => {
                 this.id = params.get("id");
+                this.assignee = params.get("assignee");
             });
         this.getTicket(this.id);
     }
@@ -34,12 +36,15 @@ export class TicketFormComponent {
 
     private updateTicket(data: any): void {
         let payload = {
+            "SeverityNumber": data.SeverityNumber,
+            "Status": data.Status,
+            "SuspendReason": data.SuspendReason,
             "Priority": data.Priority,
             "StatusTracking": data.StatusTracking,
             "ETR": data.ETR.formatted
         };
         this.ticketService.updateTicket(this.id, payload).subscribe(data => {
-            this.router.navigate(['tickets']);
+            this.router.navigate(['tickets',this.assignee]);
         });
     }
 

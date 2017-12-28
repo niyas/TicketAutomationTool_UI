@@ -17,8 +17,8 @@ export class TicketService {
      * Get the list of all tickets from API
      * @return {Promise}
      */
-    getTickets() {
-        return this.http.get(this.apiHost + '/api/tickets')
+    getTickets(assignee) {
+        return this.http.get(this.apiHost + '/api/tickets/gettickets/'+ assignee)
             .map((res: Response) => res.json());
     }
 
