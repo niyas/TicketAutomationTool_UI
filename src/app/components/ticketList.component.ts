@@ -1,17 +1,19 @@
-﻿import { Component } from '@angular/core';
+// Import statements
+import { Component } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import * as _ from "lodash";
 import { ActivatedRoute } from '@angular/router';
 
 import { TicketService } from '../services/ticket.service';
 
+// Attribute metadata
 @Component({
     selector: 'ticket-list',
     styles: [],
     templateUrl: '../templates/ticketTable.html',
     providers: [TicketService]
 })
- 
+ // TicketList component class exposing the TicketList model
 export class TicketListComponent {
     constructor(private ticketService: TicketService, private route: ActivatedRoute) {
     }
