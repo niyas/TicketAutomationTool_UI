@@ -60,3 +60,13 @@ typings/
 package.json
 src/environments/environment.prod.ts
 src/environments/environment.ts
+.vs/config/applicationhost.config
+.vs/slnx.sqlite
+.vs/TicketAutomationTool_UI/v15/.suo
+.vs/VSWorkspaceState.json
+package-lock.json
+src/environments/environment.prod.ts
+src/environments/environment.ts
+tslint.json
+tslint.json
+tslint.json
