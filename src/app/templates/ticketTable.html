@@ -72,7 +72,7 @@
                 {{ticket.Priority}}
             </td>
             <td>
-                <a [routerLink]="['/update', ticket.PayrollDataId]"  class="btn btn-primary"  *ngIf="!ticket.Finalized">update</a>
+                <a [routerLink]="['/update', assignee, ticket.PayrollDataId]"  class="btn btn-primary"  *ngIf="!ticket.Finalized">update</a>
                <!-- <button type="button" class="btn btn-primary">Update</button>-->
             </td>
         </tr>

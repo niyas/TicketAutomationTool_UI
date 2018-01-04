@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import * as _ from "lodash";
+import { ActivatedRoute } from '@angular/router';
 
 import { TicketService } from '../services/ticket.service';
 
@@ -14,14 +15,20 @@ import { TicketService } from '../services/ticket.service';
 })
  // TicketList component class exposing the TicketList model
 export class TicketListComponent {
-    constructor(private ticketService: TicketService) {
+    constructor(private ticketService: TicketService, private route: ActivatedRoute) {
     }
 
     tickets: any = [''];
     isFinalized: boolean = false;
     status: string;
+    assignee: string;
+
     ngOnInit() {
-        this.loadTicket();
+        this.route.paramMap
+        .subscribe(params => {
+            this.assignee = params.get("assignee");
+        });
+        this.loadTicket(this.assignee);
     }
 
     finalize() {
@@ -42,8 +49,8 @@ export class TicketListComponent {
         }
     }
 
-    loadTicket() {
-        this.ticketService.getTickets().subscribe(data => this.tickets = data);
+    loadTicket(assignee) {
+        this.ticketService.getTickets(assignee).subscribe(data => this.tickets = data);
     }
 
    

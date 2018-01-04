@@ -1,40 +1,49 @@
 ﻿<form style="width:30%;margin-left:1%;" #ticketForm="ngForm" (ngSubmit)="updateTicket(ticketForm.value)">
     <div class="form-group">
         <label for="imId">IM ID</label>
-        <input class="form-control" name="ImId" [ngModel] ="ticket.IncidentId"/>
+        <input class="form-control" name="ImId" [ngModel] ="ticket.IncidentId" readonly/>
     </div>
     <div class="form-group">
         <label for="AssigneeGroup">Assignee Group</label>
-        <input class="form-control" name="AssigneeGroup" [ngModel] ="ticket.AssigneeGroup"/>
+        <input class="form-control" name="AssigneeGroup" [ngModel] ="ticket.AssigneeGroup" readonly/>
     </div>
     <div class="form-group">
         <label for="Assignee">Assignee</label>
-        <input class="form-control" name="Asignee" [ngModel]="ticket.Assignee"/>
+        <input class="form-control" name="Asignee" [ngModel]="ticket.Assignee" readonly/>
     </div>
     <div class="form-group">
         <label for="Description">Description</label>
-        <textarea class="form-control" name="Description" [ngModel]="ticket.NotificationText"></textarea>
+        <textarea class="form-control" name="Description" [ngModel]="ticket.NotificationText" readonly></textarea>
     </div>
     <div class="form-group">
         <label for="Severity">Severity</label>
-        <select class="form-control" name="Severity" ngModel>
-            <option> -- </option>
+        <select class="form-control" name="Severity" [ngModel]="ticket.SeverityNumber">
+            <option value="0"></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
         </select>
     </div>
     <div class="form-group">
         <label for="Status">Status</label>
-        <select class="form-control" name="Status" ngModel>
-            <option> -- </option>
+        <select class="form-control" name="Status" [ngModel]="ticket.Status">
+            <option></option>
+            <option value="Assigned"> Assigned </option>
+            <option value="Suspend"> Suspend </option>
+            <option value="Service Restored"> Service Restored </option>
         </select>
     </div>
     <div class="form-group">
         <label for="SuspendReason">Suspend Reason</label>
         <input class="form-control" name="SuspendReason" [ngModel] ="ticket.SuspendReason" />
     </div>
-    <!--<div class="form-group">
+    <!-- <div class="form-group">
         <label for="ExistingStatusTracking">Existing Status Tracking</label>
         <input class="form-control" name="ExistingStatusTracking" ngModel/>
-    </div>-->
+    </div> -->
     <div class="form-group">
         <label for="UpdateStatusTracking">Update Status Tracking</label>
         <input class="form-control" name="StatusTracking" #StatusTracking="ngModel" [ngModel] ="ticket.StatusTracking" required>
