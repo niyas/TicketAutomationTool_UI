@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+package.json
+src/environments/environment.prod.ts
+src/environments/environment.ts
