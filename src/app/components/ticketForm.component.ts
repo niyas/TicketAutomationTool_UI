@@ -17,7 +17,18 @@ export class TicketFormComponent {
     constructor(private ticketService: TicketService, private route: ActivatedRoute, private router: Router) {
     }
 
-    ticket = {};
+    ticket = {
+        IncidentId:'',
+        AssigneeGroup: '',
+        Assignee:'',
+        NotificationText: '',
+        SeverityNumber:'',
+        Status:'',
+        SuspendReason:'',
+        StatusTracking:'',
+        ETR:'',
+        Priority:''
+    };
     private id: string;
     assignee: string;
 
@@ -34,7 +45,7 @@ export class TicketFormComponent {
         this.ticketService.getTicket(id).subscribe(data => this.ticket = data);
     }
 
-    private updateTicket(data: any): void {
+    public updateTicket(data: any): void {
         let payload = {
             "SeverityNumber": data.SeverityNumber,
             "Status": data.Status,
