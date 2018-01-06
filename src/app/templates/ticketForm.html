@@ -52,14 +52,18 @@
     <div class="form-group">
         <label for="ETR">ETR</label>
         <my-date-picker name="ETR" [options]="myDatePickerOptions" #ETR="ngModel" required [ngModel]="ticket.ETR"></my-date-picker>
+        <label class="form-check-label">
+            <input type="checkbox" name="TBD" class="form-check-input" #TBD="ngModel" [ngModel]="ticket.TBD" required>
+            TBD
+        </label><br/>
         <small id="ETRHelp" class="form-text text-muted">Select a date from the callender</small>
-        <div class="alert alert-danger" *ngIf="ETR.touched && !ETR.valid">ETR date value is required</div>
+        <div class="alert alert-danger" *ngIf="ETR.touched && !ETR.valid && !TBD.valid">ETR date value is required</div>
     </div>
     <div class="form-group">
         <label for="Priority">Priority</label>
         <input class="form-control" name="Priority" #Priority="ngModel" [ngModel]="ticket.Priority" required />
         <div class="alert alert-danger" *ngIf="Priority.touched && !Priority.valid">Priority should not be blank</div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">Update</button>
-    <a class="btn btn-danger" routerLink="/tickets">Cancel</a>
+    <button type="submit" class="btn btn-primary" [disabled]="!(StatusTracking.valid && (ETR.valid || TBD.valid) && Priority.valid)">Update</button>
+    <a class="btn btn-danger" routerLink="/tickets">Cancel {{TBD.valid}}</a>
 </form>

@@ -27,7 +27,8 @@ export class TicketFormComponent {
         SuspendReason:'',
         StatusTracking:'',
         ETR:'',
-        Priority:''
+        Priority:'',
+        TBD: ''
     };
     private id: string;
     assignee: string;
@@ -52,7 +53,8 @@ export class TicketFormComponent {
             "SuspendReason": data.SuspendReason,
             "Priority": data.Priority,
             "StatusTracking": data.StatusTracking,
-            "ETR": data.ETR.formatted
+            "ETR": data.ETR? data.ETR.formatted: '',
+            "TBD": data.TBD
         };
         this.ticketService.updateTicket(this.id, payload).subscribe(data => {
             this.router.navigate(['tickets',this.assignee]);
