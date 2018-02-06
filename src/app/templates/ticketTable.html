@@ -45,7 +45,7 @@
         <tr *ngFor="let ticket of tickets" [className] ="ticket.Priority? 'success': ''">
             <td>
                 <input type="checkbox"  name="isFinalize" [(ngModel)]="ticket.isSelected" 
-                    (ngModelChange)="finalizeSelected()" *ngIf="!ticket.Finalized" class="form-check-input" />
+                    (ngModelChange)="finalizeSelected()" *ngIf="!ticket.Finalized || (ticket.ETR && ticket.Priority && ticket.Status)" class="form-check-input" />
             </td>
             <td>
                 {{ticket.IncidentId}}
