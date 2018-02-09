@@ -1,73 +1,73 @@
 ﻿<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-                IncidentId
-            </th>
-            <th>
-                NotificationText
-            </th>
-            <th>
-                SeverityNumber
-            </th>
-            <th>
-                SuspendReason
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                StatusTracking
-            </th>
-            <th>
-                ETR
-            </th>
-            <th>
-                Proprity
-            </th>
-            <td>
+  <thead>
+    <tr>
+      <th></th>
+      <th>
+        IncidentId
+      </th>
+      <th>
+        NotificationText
+      </th>
+      <th>
+        SeverityNumber
+      </th>
+      <th>
+        SuspendReason
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        StatusTracking
+      </th>
+      <th>
+        ETR
+      </th>
+      <th>
+        Proprity
+      </th>
 
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let ticket of tickets" [className] ="ticket.Priority? 'success': ''">
-            <td>
-                <input type="checkbox"  name="isFinalize" [(ngModel)]="ticket.isSelected" 
-                    (ngModelChange)="finalizeSelected()" *ngIf="!ticket.Finalized || (ticket.ETR && ticket.Priority && ticket.Status)" class="form-check-input" />
-            </td>
-            <td>
-                {{ticket.IncidentId}}
-            </td>
-            <td>
-                {{ticket.NotificationText}}
-            </td>
-            <td>
-                {{ticket.SeverityNumber}}
-            </td>
-            <td>
-                {{ticket.SuspendReason}}
-            </td>
-            <td>
-                {{ticket.Status}}
-            </td>
-            <td>
-                {{ticket.StatusTracking}}
-            </td>
-            <td>
-                {{ticket.ETR}}
-            </td>
-            <td>
-                {{ticket.Priority}}
-            </td>
-            <td>
-                <a [routerLink]="['/update', assignee, ticket.PayrollDataId]"  class="btn btn-primary"  *ngIf="!ticket.Finalized">update</a>
-               <!-- <button type="button" class="btn btn-primary">Update</button>-->
-            </td>
-        </tr>
-    </tbody>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of tickets" [className]="ticket.Priority? 'success': ''">
+      <td>
+        <input type="checkbox" name="isFinalize" [(ngModel)]="ticket.isSelected"
+               (ngModelChange)="finalizeSelected()" *ngIf="!ticket.Finalized || !ticket.ETR || !ticket.Priority || !ticket.StatusTracking" class="form-check-input" />
+      </td>
+      <td>
+        {{ticket.IncidentId}}
+      </td>
+      <td>
+        {{ticket.NotificationText}}
+      </td>
+      <td>
+        {{ticket.SeverityNumber}}
+      </td>
+      <td>
+        {{ticket.SuspendReason}}
+      </td>
+      <td>
+        {{ticket.Status}}
+      </td>
+      <td>
+        {{ticket.StatusTracking}}
+      </td>
+      <td>
+        {{ticket.TBD? 'TBD' : ticket.ETR}}
+      </td>
+      <td>
+        {{ticket.Priority}}
+      </td>
+      <td>
+        <a [routerLink]="['/update', assignee, ticket.PayrollDataId]" class="btn btn-primary" *ngIf="!ticket.Finalized ">update</a>
+        <!-- <button type="button" class="btn btn-primary">Update</button>-->
+      </td>
+    </tr>
+  </tbody>
 </table>
 <div class="float-right" *ngIf="isFinalized">
-    <a class="btn btn-default" (click)="finalize()">Finalize</a> selected, tickets will not be editable after finalize
+  <a class="btn btn-default" (click)="finalize()">Finalize</a> Please make sure that selected tickets will not be editable after finalize.
+  <!--<a class="btn btn-default" (click)="if((ticket.StatusTracking || ticket.ETR || ticket.Priority)=null) {return} else  finalize()">Finalize</a> Please make sure that selected tickets will not be editable after finalize.)-->
 </div>

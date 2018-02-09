@@ -1,73 +1,78 @@
 ﻿<form style="width:30%;margin-left:1%;" #ticketForm="ngForm" (ngSubmit)="updateTicket(ticketForm.value)">
     <div class="form-group">
-        <label for="imId">IM ID</label>
-        <input class="form-control" name="ImId" [ngModel] ="ticket.IncidentId" readonly/>
+      <label for="imId">IM ID</label>
+      <input class="form-control" name="ImId" [ngModel]="ticket.IncidentId" readonly />
     </div>
     <div class="form-group">
-        <label for="AssigneeGroup">Assignee Group</label>
-        <input class="form-control" name="AssigneeGroup" [ngModel] ="ticket.AssigneeGroup" readonly/>
+      <label for="AssigneeGroup">Assignee Group</label>
+      <input class="form-control" name="AssigneeGroup" [ngModel]="ticket.AssigneeGroup" readonly />
     </div>
     <div class="form-group">
-        <label for="Assignee">Assignee</label>
-        <input class="form-control" name="Asignee" [ngModel]="ticket.Assignee" readonly/>
+      <label for="Assignee">Assignee</label>
+      <input class="form-control" name="Asignee" [ngModel]="ticket.Assignee" readonly />
     </div>
     <div class="form-group">
-        <label for="Description">Description</label>
-        <textarea class="form-control" name="Description" [ngModel]="ticket.NotificationText" readonly></textarea>
+      <label for="Description">Description</label>
+      <textarea class="form-control" name="Description" [ngModel]="ticket.NotificationText" readonly></textarea>
     </div>
     <div class="form-group">
-        <label for="Severity">Severity</label>
-        <select class="form-control" name="Severity" [ngModel]="ticket.SeverityNumber">
-            <option value="0"></option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select>
+      <label for="Severity">Severity</label>
+      <select class="form-control" name="Severity" [ngModel]="ticket.SeverityNumber">
+        <option value="0"></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
     </div>
     <div class="form-group">
-        <label for="Status">Status</label>
-        <select class="form-control" name="Status" [ngModel]="ticket.Status">
-            <option></option>
-            <option value="Assigned"> Assigned </option>
-            <option value="Suspend"> Suspend </option>
-            <option value="Service Restored"> Service Restored </option>
-        </select>
+      <label for="Status">Status</label>
+      <select class="form-control" name="Status" [ngModel]="ticket.Status">
+        <option></option>
+        <option value="Assigned"> Assigned </option>
+        <option value="Suspend"> Suspend </option>
+        <option value="Service Restored"> Service Restored </option>
+      </select>
     </div>
     <div class="form-group">
-        <label for="SuspendReason">Suspend Reason</label>
-        <input class="form-control" name="SuspendReason" [ngModel] ="ticket.SuspendReason" />
+      <label for="SuspendReason">Suspend Reason</label>
+      <input class="form-control" name="SuspendReason" [ngModel]="ticket.SuspendReason" />
     </div>
-    <!-- <div class="form-group">
-        <label for="ExistingStatusTracking">Existing Status Tracking</label>
-        <input class="form-control" name="ExistingStatusTracking" ngModel/>
-    </div> -->
+  
     <div class="form-group">
-        <label for="UpdateStatusTracking">Update Status Tracking</label>
-        <input class="form-control" name="StatusTracking" #StatusTracking="ngModel" [ngModel] ="ticket.StatusTracking" required>
-        <div class="alert alert-danger" *ngIf="StatusTracking.touched && !StatusTracking.valid">Update Status Tracking should not be blank</div>
+      <label for="UpdateStatusTracking">Update Status Tracking</label>
+      <input class="form-control" name="StatusTracking" #StatusTracking="ngModel" [ngModel]="ticket.StatusTracking" required>
+      <span style="color:dimgray;">Previous Status Tracking:{{ticket.PreviousStatusTracking}}</span>
+      <div class="alert alert-danger" *ngIf="StatusTracking.touched && !StatusTracking.valid">Update Status Tracking should not be blank</div>
     </div>
+  
     <div class="form-group">
-        <label for="ETR">ETR</label>
-        <my-date-picker name="ETR" [options]="myDatePickerOptions" #ETR="ngModel" required [ngModel]="ticket.ETR"></my-date-picker>
-        <label class="form-check-label">
-            <input type="checkbox" name="TBD" class="form-check-input" #TBD="ngModel" [ngModel]="ticket.TBD" required>
-            TBD
-        </label><br/>
-        <small id="ETRHelp" class="form-text text-muted">Select a date from the callender</small>
-        <div class="alert alert-danger" *ngIf="ETR.touched && !ETR.valid && !TBD.valid">ETR date value is required</div>
+      <label for="ETR">ETR</label>
+      <my-date-picker name="ETR" [options]="myDatePickerOptions" #ETR="ngModel" required [ngModel]="ticket.ETR"></my-date-picker>
+      <span style="color:dimgray;">Previous ETR:{{ticket.PreviousETR}}</span>
+      <br />
+      <label class="form-check-label">
+        <input type="checkbox" name="TBD" class="form-check-input" #TBD="ngModel" [ngModel]="ticket.TBD" required>
+        TBD
+      </label><br />
+      <small id="ETRHelp" class="form-text text-muted">Select a date from the calender</small>
+      <div class="alert alert-danger" *ngIf="ETR.touched && !ETR.valid && !TBD.valid">ETR date value is required</div>
     </div>
+  
     <div class="form-group">
-        <label for="Priority">Priority</label>
-        <select class="form-control" name="Priority" #Priority="ngModel" [ngModel]="ticket.Priority" required >
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </select>   
-        <div class="alert alert-danger" *ngIf="Priority.touched && !Priority.valid">Priority should not be blank</div>
+      <label for="Priority">Priority</label>
+      <select class="form-control" name="Priority" #Priority="ngModel" [ngModel]="ticket.Priority" required>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <span style="color:dimgray;">Previous Priority:{{ticket.PreviousPriority}}</span>
+      <div class="alert alert-danger" *ngIf="Priority.touched && !Priority.valid">Priority should not be blank</div>
     </div>
+  
     <button type="submit" class="btn btn-primary" [disabled]="!(StatusTracking.valid && (ETR.valid || TBD.valid) && Priority.valid)">Update</button>
-    <a class="btn btn-danger" routerLink="/tickets">Cancel {{TBD.valid}}</a>
-</form>
+    <a class="btn btn-danger" routerLink="/tickets/{{assignee}}">Cancel</a>
+  </form>
+  
