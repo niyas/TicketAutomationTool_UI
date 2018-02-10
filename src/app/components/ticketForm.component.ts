@@ -49,8 +49,10 @@ export class TicketFormComponent {
   getTicket(id) {
     this.ticketService.getTicket(id).subscribe(data => {
         this.ticket = data; 
-        var ETRSplit = this.ticket.ETR.split("\/", 3);
-        this.ETRDate = {date: {year: Number(ETRSplit[2]), day: Number(ETRSplit[0]), month: Number(ETRSplit[1])}};
+        if(this.ticket.ETR) {
+            var ETRSplit = this.ticket.ETR.split("\/", 3);
+            this.ETRDate = {date: {year: Number(ETRSplit[2]), day: Number(ETRSplit[0]), month: Number(ETRSplit[1])}};
+        }
     });
     
   }
