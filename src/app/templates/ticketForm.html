@@ -50,7 +50,7 @@
   
     <div class="form-group">
       <label for="ETR">ETR</label>
-      <my-date-picker name="ETR" [options]="myDatePickerOptions" #ETR="ngModel" required [(ngModel)]="ticket.ETR"></my-date-picker>
+      <my-date-picker name="ETR" [options]="myDatePickerOptions" #ETR="ngModel" required [(ngModel)]="ETRDate"></my-date-picker>
       <span style="color:dimgray;">Previous ETR:{{ticket.PreviousETR}}</span>
       <br />
       <label class="form-check-label">

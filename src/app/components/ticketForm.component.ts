@@ -36,7 +36,7 @@ export class TicketFormComponent {
   };
   private id: string;
   assignee: string;
-
+  public ETRDate: any;
   ngOnInit() {
     this.route.paramMap
       .subscribe(params => {
@@ -47,7 +47,12 @@ export class TicketFormComponent {
   }
 
   getTicket(id) {
-    this.ticketService.getTicket(id).subscribe(data => this.ticket = data);
+    this.ticketService.getTicket(id).subscribe(data => {
+        this.ticket = data; 
+        var ETRSplit = this.ticket.ETR.split("\/", 3);
+        this.ETRDate = {date: {year: Number(ETRSplit[2]), day: Number(ETRSplit[0]), month: Number(ETRSplit[1])}};
+    });
+    
   }
 
   public updateTicket(data: any): void {
