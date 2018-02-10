@@ -54,11 +54,12 @@
       <span style="color:dimgray;">Previous ETR:{{ticket.PreviousETR}}</span>
       <br />
       <label class="form-check-label">
-        <input type="checkbox" name="TBD" class="form-check-input" #TBD="ngModel" [ngModel]="ticket.TBD" required>
+        <input type="checkbox" name="TBD" class="form-check-input" #TBD="ngModel" [(ngModel)]="ticket.TBD" required>
         TBD
       </label><br />
       <small id="ETRHelp" class="form-text text-muted">Select a date from the calender</small>
       <div class="alert alert-danger" *ngIf="ETR.touched && !ETR.valid && !TBD.valid">ETR date value is required</div>
+      <div class="alert alert-danger" *ngIf="ETR.valid && ticket.TBD">You are not allowded to enter both ETR and TBD</div>
     </div>
   
     <div class="form-group">
@@ -72,7 +73,7 @@
       <div class="alert alert-danger" *ngIf="Priority.touched && !Priority.valid">Priority should not be blank</div>
     </div>
   
-    <button type="submit" class="btn btn-primary" [disabled]="!(StatusTracking.valid && (ETR.valid || TBD.valid) && Priority.valid)">Update</button>
+    <button type="submit" class="btn btn-primary" [disabled]="(!(StatusTracking.valid && (ETR.valid || TBD.valid) && Priority.valid)) || (ETR.valid && ticket.TBD)">Update</button>
     <a class="btn btn-danger" routerLink="/tickets/{{assignee}}">Cancel</a>
   </form>
   
