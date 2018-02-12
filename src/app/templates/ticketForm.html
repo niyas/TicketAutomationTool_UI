@@ -70,10 +70,10 @@
         <option value="Low">Low</option>
       </select>
       <span style="color:dimgray;">Previous Priority:{{ticket.PreviousPriority}}</span>
-      <div class="alert alert-danger" *ngIf="Priority.touched && !Priority.valid">Priority should not be blank</div>
+      <div class="alert alert-danger" *ngIf="(Priority.touched && !Priority.valid)">Priority should not be blank</div>
     </div>
   
-    <button type="submit" class="btn btn-primary" [disabled]="(!(StatusTracking.valid && (ETR.valid || TBD.valid) && Priority.valid)) || (ETR.valid && ticket.TBD)">Update</button>
+    <button type="submit" class="btn btn-primary" [disabled]="(!(StatusTracking.valid && (ETR.valid || TBD.valid) && Priority.valid) || (ETR.valid && ticket.TBD == 'true'))">Update</button>
     <a class="btn btn-danger" routerLink="/tickets/{{assignee}}">Cancel</a>
   </form>
   
