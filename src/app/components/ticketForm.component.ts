@@ -56,7 +56,8 @@ export class TicketFormComponent {
     });
     
   }
-
+  
+// Method to update the ticket details
   public updateTicket(data: any): void {
     let payload = {
       "SeverityNumber": data.Severity,
